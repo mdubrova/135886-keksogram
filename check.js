@@ -1,7 +1,7 @@
 function getMessage(a, b) {
 
-	var a = typeof a
-	var b = typeof b
+	var a = typeof a;
+	var b = typeof b;
 
 	if (a == "boolean" && a == true) {
 	  return ("Переданное GIF-изображение анимировано и содержит" + b + "кадров" );
@@ -14,14 +14,23 @@ function getMessage(a, b) {
 	   return ("Переданное SVG-изображение содержит" + var a + "объектов и" + attr + "аттрибутов");
 	  }
 
-	  if ()
+    if (a.constractor == Array) {
+	     var arr = a;
+		 var result = arr.reduce(function(sum, current) {
+		 return sum + current;
+		 }, 0);
+		 return ("Количество красных точек во всех строчках изображения:" + result);
+    }
 
-    if (a == "object") {
-     var arr = a
-	 var result = arr.reduce(function(sum, current) {
-	 return sum + current;
-	 }, 0);
-	 return ("Количество красных точек во всех строчках изображения:" + result)
+    if (a.constractor == Array && b.constractor == Array) {
+    	var arr = a;
+    	var arr2 = b;
+
+    	var arr3 = arr.map(function(value, index){ return value * arr2[index] });
+    	var square = arr3.reduce(function(sum, current) {
+	    return sum + current;
+	    }, 0);
+        return ("Общая площадь артефактов сжатия:" + square + "пикселей")
     }
 }
 
