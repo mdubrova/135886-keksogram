@@ -4,7 +4,7 @@
 [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Мария Федорова](https://htmlacademy.ru/profile/id135886).
-* Наставник: `Unknown`.
+* Наставник: `Иван Гунченко`.
 
 ### Немного о себе
 
