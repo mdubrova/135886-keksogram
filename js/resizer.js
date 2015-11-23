@@ -18,6 +18,7 @@
     this._image.onload = function() {
       // Размер холста равен размеру загруженного изображения. Это нужно
       // для удобства работы с координатами.
+
       this._container.width = this._image.naturalWidth;
       this._container.height = this._image.naturalHeight;
 
@@ -79,17 +80,14 @@
      * Отрисовка канваса.
      */
     redraw: function() {
+
       // Очистка изображения.
       this._ctx.clearRect(0, 0, this._container.width, this._container.height);
-
-      // Параметры линии.
-      // NB! Такие параметры сохраняются на время всего процесса отрисовки
-      // canvas'a поэтому важно вовремя поменять их, если нужно начать отрисовку
-      // чего-либо с другой обводкой.
 
       // Толщина линии.
       this._ctx.lineWidth = 6;
       // Цвет обводки.
+
       this._ctx.strokeStyle = '#ffe753';
       // Размер штрихов. Первый элемент массива задает длину штриха, второй
       // расстояние между соседними штрихами.
@@ -99,6 +97,7 @@
 
       // Сохранение состояния канваса.
       // Подробней см. строку 132.
+
       this._ctx.save();
 
       // Установка начальной точки системы координат в центр холста.
@@ -106,10 +105,40 @@
 
       var displX = -(this._resizeConstraint.x + this._resizeConstraint.side / 2);
       var displY = -(this._resizeConstraint.y + this._resizeConstraint.side / 2);
-      // Отрисовка изображения на холсте. Параметры задают изображение, которое
       // нужно отрисовать и координаты его верхнего левого угла.
       // Координаты задаются от центра холста.
       this._ctx.drawImage(this._image, displX, displY);
+
+      this._ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+
+      this._ctx.fillRect(
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
+          -this._resizeConstraint.side / 2 - this._ctx.lineWidth,
+          this._resizeConstraint.side + this._ctx.lineWidth / 2,
+          -( (this._container.height / 2) - (this._resizeConstraint.side / 2)));
+
+      this._ctx.fillRect(
+         (this._resizeConstraint.side / 2) - this._ctx.lineWidth / 2,
+          -this._container.height / 2,
+         ( (this._container.width / 2) - (this._resizeConstraint.side / 2 - this._ctx.lineWidth)),
+          this._container.height);
+
+      this._ctx.fillRect(
+         (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
+          -this._container.height / 2,
+          -( (this._container.width / 2) - (this._resizeConstraint.side / 2 - this._ctx.lineWidth)),
+         this._container.height);
+
+      this._ctx.fillRect(
+          (-this._resizeConstraint.side / 2) - this._ctx.lineWidth,
+          this._resizeConstraint.side / 2 - this._ctx.lineWidth / 2,
+          this._resizeConstraint.side + this._ctx.lineWidth / 2,
+          ( (this._container.height / 2) - (this._resizeConstraint.side / 2 - this._ctx.lineWidth) ));
+
+
+      this._ctx.font = 'normal 30px Arial';
+      this._ctx.textAlign = 'center';
+      this._ctx.fillText(this._image.naturalWidth + 'x' + this._image.naturalHeight, 0, (-this._resizeConstraint.side / 2) - this._ctx.lineWidth * 2);
 
       // Отрисовка прямоугольника, обозначающего область изображения после
       // кадрирования. Координаты задаются от центра.
