@@ -106,8 +106,15 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
+
   function resizeFormIsValid() {
-    return (parseInt(left.value) + parseInt(side.value) < currentResizer._image.naturalWidth && parseInt(top.value) + parseInt(side.value) < currentResizer._image.naturalHeight);
+    var leftValue = +left.value;
+    var sideValue = +side.value;
+    var topValue = +top.value;
+    var widthCrop = leftValue + sideValue; 
+    var heightCrop = topValue + sideValue;
+
+    return (widthCrop < currentResizer._image.naturalWidth && heightCrop < currentResizer._image.naturalHeight);
   }
 
   /**
