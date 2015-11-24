@@ -86,26 +86,22 @@
   var top = resizeForm['resize-y'];
 
   var side = resizeForm['resize-size'];
-  
   //функция которая дизейблит кнопку submit при невалидных данных
   left.onchange = function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
   };
-
-   top.onchange = function() {
+  top.onchange = function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
   };
-
-   side.onchange = function() {
+  side.onchange = function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
   };
-
   /**
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
