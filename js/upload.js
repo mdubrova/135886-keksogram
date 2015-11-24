@@ -92,7 +92,7 @@
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
-  }
+  };
   /**
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
