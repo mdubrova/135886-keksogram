@@ -91,7 +91,6 @@
   resizeForm.onchange = function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
-
     submit.disabled = !resizeFormIsValid();
   }
 
