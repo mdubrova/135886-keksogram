@@ -93,7 +93,6 @@
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
   }
-
   /**
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
@@ -101,7 +100,6 @@
   function resizeFormIsValid() {
     return left + side < currentResizer._image.naturalWidth && top + side < currentResizer._image.naturalHeight;
   }
-
 
   /**
    * Форма добавления фильтра.
