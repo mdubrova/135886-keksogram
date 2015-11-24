@@ -68,14 +68,6 @@
   }
 
   /**
-   * Проверяет, валидны ли данные, в форме кадрирования.
-   * @return {boolean}
-   */
-  function resizeFormIsValid() {
-    return true;
-  }
-
-  /**
    * Форма загрузки изображения.
    * @type {HTMLFormElement}
    */
@@ -85,7 +77,45 @@
    * Форма кадрирования изображения.
    * @type {HTMLFormElement}
    */
+
+   //Форма и поля для ввода
   var resizeForm = document.forms['upload-resize'];
+
+  var left = resizeForm['resize-x'];
+
+  var top = resizeForm['resize-y'];
+
+  var side = resizeForm['resize-size'];
+  //функция которая дизейблит кнопку submit при невалидных данных
+  left.onchange = function() {
+    //кнопка отправки формы
+    var submit = document.getElementById('filter-fwd');
+    submit.disabled = !resizeFormIsValid();
+  };
+  top.onchange = function() {
+    //кнопка отправки формы
+    var submit = document.getElementById('filter-fwd');
+    submit.disabled = !resizeFormIsValid();
+  };
+  side.onchange = function() {
+    //кнопка отправки формы
+    var submit = document.getElementById('filter-fwd');
+    submit.disabled = !resizeFormIsValid();
+  };
+  /**
+   * Проверяет, валидны ли данные, в форме кадрирования.
+   * @return {boolean}
+   */
+
+  function resizeFormIsValid() {
+    var leftValue = +left.value;
+    var sideValue = +side.value;
+    var topValue = +top.value;
+    var widthCrop = leftValue + sideValue;
+    var heightCrop = topValue + sideValue;
+
+    return (widthCrop < currentResizer._image.naturalWidth && heightCrop < currentResizer._image.naturalHeight);
+  }
 
   /**
    * Форма добавления фильтра.
