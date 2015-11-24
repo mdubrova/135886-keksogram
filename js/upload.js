@@ -111,7 +111,7 @@
     var leftValue = +left.value;
     var sideValue = +side.value;
     var topValue = +top.value;
-    var widthCrop = leftValue + sideValue; 
+    var widthCrop = leftValue + sideValue;
     var heightCrop = topValue + sideValue;
 
     return (widthCrop < currentResizer._image.naturalWidth && heightCrop < currentResizer._image.naturalHeight);
