@@ -107,7 +107,7 @@
    * @return {boolean}
    */
   function resizeFormIsValid() {
-    return (left.value + side.value < currentResizer._image.naturalWidth && top.value + side.value < currentResizer._image.naturalHeight);
+    return (parseInt(left.value) + parseInt(side.value) < currentResizer._image.naturalWidth && parseInt(top.value) + parseInt(side.value) < currentResizer._image.naturalHeight);
   }
 
   /**
