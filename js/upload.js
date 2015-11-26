@@ -230,11 +230,10 @@
       resizeForm.classList.add('invisible');
       filterForm.classList.remove('invisible');
     }
-    
-    if(docCookies.getItem('filter')){
+    if (docCookies.getItem('filter')) {
       filterImage.className = 'filter-image-preview ' + docCookies.getItem('filter');
-      document.getElementById("upload-filter-" + docCookies.getItem('filter').substr(7)).checked = true;
-    };
+      document.getElementById('upload-filter-' + docCookies.getItem('filter').substr(7)).checked = true;
+    }
   };
 
   /**
@@ -255,28 +254,27 @@
    */
   filterForm.onsubmit = function(evt) {
     evt.preventDefault();
-  
     //вычисление времени жизни куки
     var myBirthday = new Date(2015, 10, 8).getTime();
     var dateDiff = Date.now() - myBirthday;
     var cookieExpirationDate = Date.now() + dateDiff;
 
     //определяем выбранный фильтр
-    var selectedFilter = document.getElementsByClassName("filter-image-preview")[0].className;
-    if(selectedFilter.includes('filter-none')){
-      var filterValue = 'filter-none'
-    };
-    if(selectedFilter.includes('filter-chrome')){
-      var filterValue = 'filter-chrome'
-    };
-    if(selectedFilter.includes('filter-sepia')){
-      var filterValue = 'filter-sepia'
-    };  
-    
+    var selectedFilter = document.getElementsByClassName('filter-image-preview')[0].className;
+    if (selectedFilter.includes('filter-none')) {
+      var filterValue = 'filter-none';
+    }
+    if (selectedFilter.includes('filter-chrome')) {
+      filterValue = 'filter-chrome';
+    }
+    if (selectedFilter.includes('filter-sepia')) {
+      filterValue = 'filter-sepia';
+    }
     //записываем выбранный фильтр в куки
     document.cookie = 'filter=' + filterValue + ';expires='+cookieExpirationDate;
 
     cleanupResizer();
+
     updateBackground();
 
     filterForm.classList.add('invisible');
@@ -306,7 +304,7 @@
     // Класс перезаписывается, а не обновляется через classList потому что нужно
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
-    filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter]
+    filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
   };
 
   cleanupResizer();
