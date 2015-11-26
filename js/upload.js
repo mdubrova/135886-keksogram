@@ -271,10 +271,9 @@
       filterValue = 'filter-sepia';
     }
     //записываем выбранный фильтр в куки
-    document.cookie = 'filter=' + filterValue + ';expires='+cookieExpirationDate;
+    document.cookie = 'filter=' + filterValue + ';expires=' + cookieExpirationDate;
 
     cleanupResizer();
-
     updateBackground();
 
     filterForm.classList.add('invisible');
