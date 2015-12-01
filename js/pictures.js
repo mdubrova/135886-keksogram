@@ -20,12 +20,12 @@
     var image = new Image(182, 182);
 
     image.onload = function() {
-     duplicate.replaceChild(image, duplicate.querySelector('img'));
-   };
+      duplicate.replaceChild(image, duplicate.querySelector('img'));
+    };
 
     image.onerror = function() {
-     duplicate.classList.add('picture-load-failure');
-   };
+      duplicate.classList.add('picture-load-failure');
+    };
 
     image.src = data.url;
 
