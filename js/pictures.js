@@ -23,8 +23,8 @@
         break;
       case 'filter-new':
         filteredPictures = filteredPictures.sort(function(a, b) {
-           a = new Date(a.date);
-           b = new Date(b.date);
+          a = new Date(a.date);
+          b = new Date(b.date);
           return b - a;
         });
         break;
@@ -33,15 +33,14 @@
           return b.comments - a.comments;
         });
         break;
-  }
+    }
 
     renderPictures(filteredPictures);
   }
-    getPictures();
-  
+  getPictures();
   function renderPictures(pictures) {
-   pictureBlock.innerHTML = '';
-   pictures.forEach(function(picture) {
+    pictureBlock.innerHTML = '';
+    pictures.forEach(function(picture) {
      var nodeElement = getElementFromTemplate(picture);
      pictureBlock.appendChild(nodeElement);
    });
@@ -63,7 +62,7 @@
       pictureBlock.classList.add('pictures-failure');
     };
 
-      xhr.send();  
+    xhr.send();
   }
 
   function getElementFromTemplate(data) {
