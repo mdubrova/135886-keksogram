@@ -6,8 +6,8 @@
   var loadedPictures = null;
   filters.classList.remove('hidden');
 
-  for(var i=0; i < filters.length; i++) {
-    filters[i].onclick = function(evt){
+  for (var i = 0; i < filters.length; i++) {
+    filters[i].onclick = function(evt) {
       var clickedElementId = evt.target.id;
       setActiveFilter(clickedElementId);
     };
@@ -15,7 +15,6 @@
 
   function setActiveFilter(id) {
     var filteredPictures = loadedPictures.slice(0);
-    
     switch (id) {
       case 'filter-popular':
         filteredPictures = filteredPictures.sort(function(a, b) {
@@ -24,26 +23,22 @@
         break;
       case 'filter-new':
         filteredPictures = filteredPictures.sort(function(a, b) {
-          var a = new Date(a.date);
-          var b = new Date(b.date);
+           a = new Date(a.date);
+           b = new Date(b.date);
           return b - a;
-        });     
+        });
         break;
       case 'filter-discussed':
         filteredPictures = filteredPictures.sort(function(a, b) {
-          return b.comments - a.comments;   
-        });        
+          return b.comments - a.comments;
+        });
         break;
   }
-  //debugger;
-  renderPictures(filteredPictures);
-}
 
-
-  getPictures();
-
+    renderPictures(filteredPictures);
+  }
+    getPictures();
   
-
   function renderPictures(pictures) {
    pictureBlock.innerHTML = '';
    pictures.forEach(function(picture) {
