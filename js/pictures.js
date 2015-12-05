@@ -41,9 +41,9 @@
   function renderPictures(pictures) {
     pictureBlock.innerHTML = '';
     pictures.forEach(function(picture) {
-     var nodeElement = getElementFromTemplate(picture);
-     pictureBlock.appendChild(nodeElement);
-   });
+      var nodeElement = getElementFromTemplate(picture);
+      pictureBlock.appendChild(nodeElement);
+    });
   }
 
   function getPictures() {
