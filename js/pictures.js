@@ -6,6 +6,7 @@
   var loadedPictures = null;
   var filteredPictures = [];
   var picturesToLoad = null;
+  var scrollTimeout;
 
   filters.classList.remove('hidden');
 
@@ -22,15 +23,14 @@
   getPictures();  
 
   window.addEventListener ('scroll', function(evt) {
-    //debugger;
-   var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
-   var viewPortSize = window.innerHeight;
-   if (picturesCoord.bottom - 50 <= window.innerHeight) {
-      if(currentPage < Math.ceil(loadedPictures.length / PAGE_SIZE)) {
-        //alert(pictureBlock.childNodes.length);
+   clearTimeout(scrollTimeout);
+   scrollTimeout = setTimeout(function() {
+    var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
+    var viewPortSize = window.innerHeight;
+     if (picturesCoord.bottom - 50 <= window.innerHeight) {
         renderPictures(loadedPictures, ++currentPage)
       }
-    }
+   }, 100);
   });
 
   function getPictures() {
@@ -42,7 +42,6 @@
       loadedPictures = JSON.parse(data);
       pictureBlock.classList.remove('pictures-loading');
       setActiveFilter('filter-popular');
-      //renderPictures(loadedPictures, 0, true);
     };
 
     xhr.onerror = function() {
@@ -90,7 +89,6 @@
   }
 
   function setActiveFilter(id) {
-    //filteredPictures = loadedPictures.slice(0);
     switch (id) {
       case 'filter-popular':
         loadedPictures.sort(function(a, b) {
@@ -110,7 +108,6 @@
         });
         break;
     }
-
     currentPage = 0;
     renderPictures(loadedPictures, currentPage, true);
   }
