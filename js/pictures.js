@@ -23,11 +23,11 @@
   window.addEventListener('scroll', function() {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(function() {
-     var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
+      var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
       if (picturesCoord.bottom - 50 <= window.innerHeight) {
         renderPictures(loadedPictures, ++currentPage);
       }
-   }, 100);
+    }, 100);
   });
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
