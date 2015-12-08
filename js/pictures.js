@@ -29,10 +29,10 @@
 
   function addPageToScroll() {
     var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
-      if (picturesCoord.bottom - 50 <= window.innerHeight) {
+    if (picturesCoord.bottom - 50 <= window.innerHeight) {
         renderPictures(loadedPictures, ++currentPage);
       }
-  } 
+  }
 
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
