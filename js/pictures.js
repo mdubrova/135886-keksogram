@@ -4,7 +4,7 @@
   var filters = document.querySelector('.filters');
   var pictureBlock = document.querySelector('.pictures');
   var loadedPictures = null;
-  var scrollTimeout;
+  var scrollInterval;
 
   filters.classList.remove('hidden');
 
@@ -20,15 +20,20 @@
 
   getPictures();
 
+  clearInterval(scrollInterval);
+  scrollInterval = setInterval(addPageToScroll, 100);
+
   window.addEventListener('scroll', function() {
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(function() {
-      var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
+    addPageToScroll();
+  });
+
+  function addPageToScroll() {
+    var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
       if (picturesCoord.bottom - 50 <= window.innerHeight) {
         renderPictures(loadedPictures, ++currentPage);
       }
-    }, 100);
-  });
+  } 
+
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
     var xhr = new XMLHttpRequest();
