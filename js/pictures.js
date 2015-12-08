@@ -4,8 +4,6 @@
   var filters = document.querySelector('.filters');
   var pictureBlock = document.querySelector('.pictures');
   var loadedPictures = null;
-  var filteredPictures = [];
-  var picturesToLoad = null;
   var scrollTimeout;
 
   filters.classList.remove('hidden');
@@ -24,15 +22,13 @@
 
   window.addEventListener ('scroll', function(evt) {
    clearTimeout(scrollTimeout);
-   scrollTimeout = setTimeout(function() {
-    var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
-    var viewPortSize = window.innerHeight;
-     if (picturesCoord.bottom - 50 <= window.innerHeight) {
-        renderPictures(loadedPictures, ++currentPage)
+   scrollTimeout = setTimeout (function() {
+     var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
+      if (picturesCoord.bottom - 50 <= window.innerHeight) {
+         renderPictures(loadedPictures, ++currentPage);
       }
    }, 100);
-  });
-
+});
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
     var xhr = new XMLHttpRequest();
@@ -56,7 +52,6 @@
     if (replace) { 
       pictureBlock.innerHTML = '';  
     }
-
     var from = pageNumber * PAGE_SIZE;
     var to = from + PAGE_SIZE;
     var pagePictures = pictures.slice(from, to);
