@@ -18,17 +18,17 @@
     };
   }
 
-  getPictures();  
+  getPictures();
 
-  window.addEventListener ('scroll', function(evt) {
-   clearTimeout(scrollTimeout);
-   scrollTimeout = setTimeout (function() {
+  window.addEventListener('scroll', function() {
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() {
      var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
       if (picturesCoord.bottom - 50 <= window.innerHeight) {
-         renderPictures(loadedPictures, ++currentPage);
+        renderPictures(loadedPictures, ++currentPage);
       }
    }, 100);
-});
+  });
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
     var xhr = new XMLHttpRequest();
@@ -49,8 +49,8 @@
   }
 
   function renderPictures(pictures, pageNumber, replace) {
-    if (replace) { 
-      pictureBlock.innerHTML = '';  
+    if (replace) {
+      pictureBlock.innerHTML = '';
     }
     var from = pageNumber * PAGE_SIZE;
     var to = from + PAGE_SIZE;
