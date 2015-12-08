@@ -306,6 +306,27 @@
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
   };
 
+  // left.addEventListener('onchange', function() {
+  //   currentResizer.setConstraint(+left.value, +top.value, +side.value);
+
+  // });
+
+  // top.addEventListener('onchange', function() {
+  //  currentResizer.setConstraint(+left.value, +top.value, +side.value);
+  // });
+
+  // side.addEventListener('onchange', function() {
+  //   currentResizer.setConstraint(+left.value, +top.value, +side.value);
+  // });
+
+  window.addEventListener('resizerchange', function() {
+    currentResizer.getConstraint();
+    left.value = currentResizer.getConstraint().x;
+    top.value = currentResizer.getConstraint().y;
+    side.value = currentResizer.getConstraint().side;
+  });
+
+
   cleanupResizer();
   updateBackground();
 })();
