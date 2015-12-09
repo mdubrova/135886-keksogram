@@ -87,21 +87,23 @@
 
   var side = resizeForm['resize-size'];
   //функция которая дизейблит кнопку submit при невалидных данных
-  left.onchange = function() {
+  left.addEventListener('change', function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
-  };
-  top.onchange = function() {
+  });
+
+  top.addEventListener('change', function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
-  };
-  side.onchange = function() {
+  });
+
+  side.addEventListener('change', function() {
     //кнопка отправки формы
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
-  };
+  });
   /**
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
@@ -306,21 +308,17 @@
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
   };
 
-  // left.addEventListener('onchange', function() {
-  //   currentResizer.setConstraint(+left.value, +top.value, +side.value);
+  function setConstraintValues() {
+      currentResizer.setConstraint(+left.value, +top.value, +side.value);
+    };
 
-  // });
+  left.addEventListener('change', setConstraintValues);
 
-  // top.addEventListener('onchange', function() {
-  //  currentResizer.setConstraint(+left.value, +top.value, +side.value);
-  // });
+  top.addEventListener('change', setConstraintValues);
 
-  // side.addEventListener('onchange', function() {
-  //   currentResizer.setConstraint(+left.value, +top.value, +side.value);
-  // });
+  side.addEventListener('change', setConstraintValues);
 
   window.addEventListener('resizerchange', function() {
-    currentResizer.getConstraint();
     left.value = currentResizer.getConstraint().x;
     top.value = currentResizer.getConstraint().y;
     side.value = currentResizer.getConstraint().side;
