@@ -4,7 +4,12 @@
   var filters = document.querySelector('.filters');
   var pictureBlock = document.querySelector('.pictures');
   var loadedPictures = null;
+  var scrollInterval;
+
   filters.classList.remove('hidden');
+
+  var currentPage = 0;
+  var PAGE_SIZE = 12;
 
   for (var i = 0; i < filters.length; i++) {
     filters[i].onclick = function(evt) {
@@ -13,37 +18,20 @@
     };
   }
 
-  function setActiveFilter(id) {
-    var filteredPictures = loadedPictures.slice(0);
-    switch (id) {
-      case 'filter-popular':
-        filteredPictures = filteredPictures.sort(function(a, b) {
-          return b.likes - a.likes;
-        });
-        break;
-      case 'filter-new':
-        filteredPictures = filteredPictures.sort(function(a, b) {
-          a = new Date(a.date);
-          b = new Date(b.date);
-          return b - a;
-        });
-        break;
-      case 'filter-discussed':
-        filteredPictures = filteredPictures.sort(function(a, b) {
-          return b.comments - a.comments;
-        });
-        break;
-    }
-
-    renderPictures(filteredPictures);
-  }
   getPictures();
-  function renderPictures(pictures) {
-    pictureBlock.innerHTML = '';
-    pictures.forEach(function(picture) {
-      var nodeElement = getElementFromTemplate(picture);
-      pictureBlock.appendChild(nodeElement);
-    });
+
+  clearInterval(scrollInterval);
+  scrollInterval = setInterval(addPageToScroll, 100);
+
+  window.addEventListener('scroll', function() {
+    addPageToScroll();
+  });
+
+  function addPageToScroll() {
+    var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
+    if (picturesCoord.bottom - 50 <= window.innerHeight) {
+      renderPictures(loadedPictures, ++currentPage);
+    }
   }
 
   function getPictures() {
@@ -54,7 +42,7 @@
       var data = evt.target.response;
       loadedPictures = JSON.parse(data);
       pictureBlock.classList.remove('pictures-loading');
-      renderPictures(loadedPictures);
+      setActiveFilter('filter-popular');
     };
 
     xhr.onerror = function() {
@@ -63,6 +51,19 @@
     };
 
     xhr.send();
+  }
+
+  function renderPictures(pictures, pageNumber, replace) {
+    if (replace) {
+      pictureBlock.innerHTML = '';
+    }
+    var from = pageNumber * PAGE_SIZE;
+    var to = from + PAGE_SIZE;
+    var pagePictures = pictures.slice(from, to);
+    pagePictures.forEach(function(picture) {
+      var nodeElement = getElementFromTemplate(picture);
+      pictureBlock.appendChild(nodeElement);
+    });
   }
 
   function getElementFromTemplate(data) {
@@ -86,5 +87,29 @@
 
     return duplicate;
   }
-  filters.classList.remove('hidden');
+
+  function setActiveFilter(id) {
+    switch (id) {
+      case 'filter-popular':
+        loadedPictures.sort(function(a, b) {
+          return b.likes - a.likes;
+        });
+        break;
+      case 'filter-new':
+        loadedPictures.sort(function(a, b) {
+          a = new Date(a.date);
+          b = new Date(b.date);
+          return b - a;
+        });
+        break;
+      case 'filter-discussed':
+        loadedPictures.sort(function(a, b) {
+          return b.comments - a.comments;
+        });
+        break;
+    }
+    currentPage = 0;
+    renderPictures(loadedPictures, currentPage, true);
+  }
+
 })();
