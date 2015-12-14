@@ -1,4 +1,5 @@
 /* global Resizer: true */
+/* global Photo: true */
 
 /**
  * @fileoverview
