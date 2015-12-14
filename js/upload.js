@@ -309,8 +309,8 @@
   };
 
   function setConstraintValues() {
-      currentResizer.setConstraint(+left.value, +top.value, +side.value);
-    };
+    currentResizer.setConstraint(+left.value, +top.value, +side.value);
+  }
 
   left.addEventListener('change', setConstraintValues);
 
