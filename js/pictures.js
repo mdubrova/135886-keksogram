@@ -1,4 +1,5 @@
 /* global Photo: true */
+/* global Gallery: true */
 
 'use strict';
 
@@ -7,6 +8,7 @@
   var pictureBlock = document.querySelector('.pictures');
   var loadedPictures = null;
   var scrollInterval;
+  var gallery = new Gallery();
 
   filters.classList.remove('hidden');
 
@@ -67,7 +69,14 @@
       var photoElement = new Photo(picture);
       photoElement.render();
       pictureBlock.appendChild(photoElement.element);
+
+      photoElement.element.addEventListener('click', _onClick);
     });
+  }
+
+  function _onClick(evt) {
+    evt.preventDefault();
+    gallery.show();
   }
 
   //function getElementFromTemplate(data) {
