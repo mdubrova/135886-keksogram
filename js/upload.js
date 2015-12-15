@@ -309,7 +309,7 @@
   };
 
   function setConstraintValues() {
-    currentResizer.setConstraint(+left.value, +top.value, +side.value);
+    currentResizer.setConstraint(parseInt(left.value), parseInt(top.value), parseInt(side.value));
   }
 
   left.addEventListener('change', setConstraintValues);
@@ -319,6 +319,7 @@
   side.addEventListener('change', setConstraintValues);
 
   window.addEventListener('resizerchange', function() {
+    console.log("EVENT HAPPENED! " + currentResizer.getConstraint().x + ";" + currentResizer.getConstraint().y + ";" + currentResizer.getConstraint().side);
     left.value = currentResizer.getConstraint().x;
     top.value = currentResizer.getConstraint().y;
     side.value = currentResizer.getConstraint().side;
