@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
 
  /**
@@ -6,12 +8,11 @@
   */
 
   function Photo(data) {
-	this._data = data;
+	    this._data = data;
   }
 
-  Photo.prototype.render = function () {
-  	//debugger;
-  	var pictureTemplate = document.querySelector('#picture-template');
+  Photo.prototype.render = function() {
+    var pictureTemplate = document.querySelector('#picture-template');
     this.element = pictureTemplate.content.children[0].cloneNode(true);
 
     this.element.querySelector('.picture-comments').textContent = this._data.comments;
@@ -28,8 +29,7 @@
     }.bind(this);
 
     image.src = this._data.url;
-  }
+  };
 
   window.Photo = Photo;
-
 })();
