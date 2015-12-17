@@ -8,7 +8,7 @@
   */
 
   function Photo(data) {
-	    this._data = data;
+    this._data = data;
   }
 
   Photo.prototype.render = function() {
