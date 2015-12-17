@@ -75,6 +75,7 @@
   }
 
   function _onClick(evt) {
+    //debugger;
     evt.preventDefault();
     gallery.show();
   }
