@@ -62,12 +62,14 @@
     }
     var from = pageNumber * PAGE_SIZE;
     var to = from + PAGE_SIZE;
-    var pagePictures = pictures.slice(from, to);
-    pagePictures.forEach(function(picture) {
+    setTimeout(function() {
+      var pagePictures = pictures.slice(from, to);
+      pagePictures.forEach(function(picture) {
       var photoElement = new Photo(picture);
       photoElement.render();
       pictureBlock.appendChild(photoElement.element);
-    });
+      });
+    }, 100);
   }
 
   //function getElementFromTemplate(data) {
