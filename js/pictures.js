@@ -8,6 +8,11 @@
   var pictureBlock = document.querySelector('.pictures');
   var loadedPictures = null;
   var scrollInterval;
+
+  /**
+   * @type {Gallery}
+   */
+
   var gallery = new Gallery();
 
   filters.classList.remove('hidden');
@@ -38,6 +43,10 @@
     }
   }
 
+  /**
+   * функция загрузки фотографий
+   */
+
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
     var xhr = new XMLHttpRequest();
@@ -57,8 +66,14 @@
     xhr.send();
   }
 
+  /**
+   * Функция отрисовки фотографий
+   * @param {Array, <Object>} pictures
+   * @param {number} pageNumber
+   * @param {boolean} replace
+   */
+
   function renderPictures(pictures, pageNumber, replace) {
-    //debugger;
     if (replace) {
       pictureBlock.innerHTML = '';
     }
@@ -73,9 +88,13 @@
       photoElement.element.addEventListener('click', _onClick);
     });
   }
+  
+  /**
+   * показывание галереи
+   * @param {Event} evt
+   */
 
   function _onClick(evt) {
-    //debugger;
     evt.preventDefault();
     gallery.show();
   }
@@ -102,6 +121,11 @@
     //return duplicate;
   //}
 
+  /**
+   * Сортирует список фотографий на основании id выбранного фильтра и отрисосывает отсортированние фотографии
+   * @param {string} id
+   */
+   
   function setActiveFilter(id) {
     switch (id) {
       case 'filter-popular':

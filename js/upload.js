@@ -104,6 +104,7 @@
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
   });
+  
   /**
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
@@ -164,6 +165,7 @@
     uploadMessage.classList.add('invisible');
   }
 
+
   function setConstraintValues() {
     currentResizer.setConstraint(parseInt(left.value, 10), parseInt(top.value, 10), parseInt(side.value, 10));
   }
@@ -175,6 +177,10 @@
   side.addEventListener('change', setConstraintValues);
 
   resizeForm.addEventListener('change', setConstraintValues);
+
+  /**
+   * задает смещение кадра
+   */
 
   function setConstraint() {
     left.value = currentResizer.getConstraint().x;
