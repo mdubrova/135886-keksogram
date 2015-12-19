@@ -163,7 +163,7 @@
   function hideMessage() {
     uploadMessage.classList.add('invisible');
   }
-  
+
   function setConstraintValues() {
     currentResizer.setConstraint(parseInt(left.value, 10), parseInt(top.value, 10), parseInt(side.value, 10));
   }
@@ -329,7 +329,7 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
-  })
+  });
 
 
   cleanupResizer();
