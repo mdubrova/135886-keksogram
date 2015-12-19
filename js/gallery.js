@@ -6,7 +6,6 @@
   * конструктор для создания обьекта Gallery
   * @constructor
   */
-
   function Gallery() {
     this.element = document.querySelector('.gallery-overlay');
     this._closeButton = this.element.querySelector('.gallery-overlay-close');
@@ -17,7 +16,6 @@
   /**
    * показ галереи
    */
-
   Gallery.prototype.show = function() {
     this.element.classList.remove('invisible');
 
@@ -27,7 +25,6 @@
   /**
    * скрытие галереи
    */
-
   Gallery.prototype.hide = function() {
     this.element.classList.add('invisible');
     this._closeButton.removeEventListener('click', this._onCloseClick);
