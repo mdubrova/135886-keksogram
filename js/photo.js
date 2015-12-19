@@ -13,8 +13,8 @@
   }
 
   /**
-  * создание элемента photo из шаблона 
-  */
+   * создание элемента photo из шаблона
+   */
 
   Photo.prototype.render = function() {
     var pictureTemplate = document.querySelector('#picture-template');

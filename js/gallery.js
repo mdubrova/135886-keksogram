@@ -3,7 +3,7 @@
 (function() {
 
  /**
-  * конструктор для создания обьекта Gallery 
+  * конструктор для создания обьекта Gallery
   * @constructor
   */
 
@@ -23,7 +23,7 @@
 
     this._closeButton.addEventListener('click', this._onCloseClick);
   };
- 
+
   /**
    * скрытие галереи
    */

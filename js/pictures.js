@@ -12,7 +12,6 @@
   /**
    * @type {Gallery}
    */
-
   var gallery = new Gallery();
 
   filters.classList.remove('hidden');
@@ -46,7 +45,6 @@
   /**
    * функция загрузки фотографий
    */
-
   function getPictures() {
     document.querySelector('.pictures').classList.add('pictures-loading');
     var xhr = new XMLHttpRequest();
@@ -72,7 +70,6 @@
    * @param {number} pageNumber
    * @param {boolean} replace
    */
-
   function renderPictures(pictures, pageNumber, replace) {
     if (replace) {
       pictureBlock.innerHTML = '';
@@ -88,12 +85,11 @@
       photoElement.element.addEventListener('click', _onClick);
     });
   }
-  
+
   /**
    * показывание галереи
    * @param {Event} evt
    */
-
   function _onClick(evt) {
     evt.preventDefault();
     gallery.show();
@@ -125,7 +121,6 @@
    * Сортирует список фотографий на основании id выбранного фильтра и отрисосывает отсортированние фотографии
    * @param {string} id
    */
-   
   function setActiveFilter(id) {
     switch (id) {
       case 'filter-popular':

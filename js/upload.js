@@ -104,12 +104,11 @@
     var submit = document.getElementById('filter-fwd');
     submit.disabled = !resizeFormIsValid();
   });
-  
+
   /**
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
-
   function resizeFormIsValid() {
     var leftValue = +left.value;
     var sideValue = +side.value;
@@ -181,7 +180,6 @@
   /**
    * задает смещение кадра
    */
-
   function setConstraint() {
     left.value = currentResizer.getConstraint().x;
     top.value = currentResizer.getConstraint().y;
