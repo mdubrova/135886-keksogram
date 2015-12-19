@@ -6,12 +6,11 @@
  * @param {Constructor} child
  * @param {Constructor} parent
  */
- function inherit(child, parent) {
-  var constructor = function() {};
-  onstructor .prototype = parent.prototype;
-  hild.prototype = new constructor ();
+  function inherit(child, parent) {
+    var constructor = function() {};
+    constructor .prototype = parent.prototype;
+    child.prototype = new constructor();
   }
- 
-   window.inherit = inherit;
- })();
- 
+
+  window.inherit = inherit;
+})();
