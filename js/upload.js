@@ -163,6 +163,26 @@
   function hideMessage() {
     uploadMessage.classList.add('invisible');
   }
+  
+  function setConstraintValues() {
+    currentResizer.setConstraint(parseInt(left.value, 10), parseInt(top.value, 10), parseInt(side.value, 10));
+  }
+
+  left.addEventListener('change', setConstraintValues);
+
+  top.addEventListener('change', setConstraintValues);
+
+  side.addEventListener('change', setConstraintValues);
+
+  resizeForm.addEventListener('change', setConstraintValues);
+
+  function setConstraint() {
+    left.value = currentResizer.getConstraint().x;
+    top.value = currentResizer.getConstraint().y;
+    side.value = currentResizer.getConstraint().side;
+  }
+
+  window.addEventListener('resizerchange', setConstraint);
 
   /**
    * Обработчик изменения изображения в форме загрузки. Если загруженный
@@ -171,7 +191,7 @@
    * и показывается форма кадрирования.
    * @param {Event} evt
    */
-  uploadForm.onchange = function(evt) {
+  uploadForm.addEventListener('change', function(evt) {
     var element = evt.target;
     if (element.id === 'upload-file') {
       // Проверка типа загружаемого файла, тип должен быть изображением
@@ -181,7 +201,8 @@
 
         showMessage(Action.UPLOADING);
 
-        fileReader.onload = function() {
+
+        fileReader.addEventListener('load', function() {
           cleanupResizer();
 
           currentResizer = new Resizer(fileReader.result);
@@ -192,7 +213,9 @@
           resizeForm.classList.remove('invisible');
 
           hideMessage();
-        };
+
+          setTimeout(setConstraint, 100);
+        });
 
         fileReader.readAsDataURL(element.files[0]);
       } else {
@@ -201,7 +224,7 @@
         showMessage(Action.ERROR);
       }
     }
-  };
+  });
 
   /**
    * Обработка сброса формы кадрирования. Возвращает в начальное состояние
@@ -306,24 +329,7 @@
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
-  };
-
-  function setConstraintValues() {
-    currentResizer.setConstraint(parseInt(left.value, 10), parseInt(top.value, 10), parseInt(side.value, 10));
   }
-
-  left.addEventListener('change', setConstraintValues);
-
-  top.addEventListener('change', setConstraintValues);
-
-  side.addEventListener('change', setConstraintValues);
-
-  window.addEventListener('resizerchange', function() {
-    //console.log('EVENT HAPPENED!' + currentResizer.getConstraint().x + ';' + currentResizer.getConstraint().y + ';' + currentResizer.getConstraint().side);
-    left.value = currentResizer.getConstraint().x;
-    top.value = currentResizer.getConstraint().y;
-    side.value = currentResizer.getConstraint().side;
-  });
 
 
   cleanupResizer();
