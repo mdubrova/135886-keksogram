@@ -65,9 +65,9 @@
     setTimeout(function() {
       var pagePictures = pictures.slice(from, to);
       pagePictures.forEach(function(picture) {
-      var photoElement = new Photo(picture);
-      photoElement.render();
-      pictureBlock.appendChild(photoElement.element);
+        var photoElement = new Photo(picture);
+        photoElement.render();
+        pictureBlock.appendChild(photoElement.element);
       });
     }, 100);
   }
