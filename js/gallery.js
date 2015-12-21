@@ -66,8 +66,7 @@
     if (this._currentSlide < this._data.length) {
       this.setCurrentPicture(++this._currentSlide);
     }
-  }
-  
+  };
 
   window.Gallery = Gallery;
 })();

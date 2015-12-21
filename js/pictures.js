@@ -65,7 +65,7 @@
     };
 
     xhr.send();
-  };
+  }
 
   /**
    * Функция отрисовки фотографий
@@ -85,12 +85,12 @@
       var photoElement = new Photo(picture);
       photoElement.render();
       pictureBlock.appendChild(photoElement.element);
-        photoElement.onClick = function() {
-          gallery.setCurrentPicture(loadedPictures.indexOf(picture));     
-          gallery.show();
-        };
-    })
-  };
+      photoElement.onClick = function() {
+        gallery.setCurrentPicture(loadedPictures.indexOf(picture));
+        gallery.show();
+      };
+    });
+  }
 
   /**
    * показывание галереи

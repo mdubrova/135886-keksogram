@@ -48,7 +48,7 @@
         if (typeof this.onClick === 'function') {
           this.onClick();
         }
-       }
+      }
     }.bind(this));
 
     Photo.prototype.onClick = null;
