@@ -34,6 +34,7 @@
     this.element.classList.add('invisible');
     this._closeButton.removeEventListener('click', this._onCloseClick);
     this._overlay.querySelector('.gallery-overlay-image').removeEventListener('click', this._onPhotoClick);
+    location.hash = '';
   };
 
  /**
@@ -53,6 +54,19 @@
   };
 
   Gallery.prototype.setCurrentPicture = function(index) {
+    if (typeof index = 'number') {
+      this.__setCurrentPicture(index);
+    };
+    if (typeof index = 'string') {  
+      for(var i = 0; i < this._data.length; i++) {
+        var pictureItem = this._data[i];
+        if (pictureItem.url == index) {
+          this.__setCurrentPicture(index);
+        }
+      };
+    };
+
+  Gallery.prototype._setCurrentPicture = function(index) {
     this._currentSlide = index;
     var picture = this._data[index];
     var image = this._overlay.querySelector('.gallery-overlay-image');

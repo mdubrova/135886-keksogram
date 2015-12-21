@@ -85,11 +85,18 @@
       photoElement.render();
       pictureBlock.appendChild(photoElement.element);
       photoElement.onClick = function() {
-        gallery.setCurrentPicture(loadedPictures.indexOf(picture));
-        gallery.show();
+        setHash(picture.url);
+
+        //gallery.setCurrentPicture(loadedPictures.indexOf(picture));
+        //gallery.show();
       };
     });
   }
+
+  function setHash(hash) {
+    location.hash = hash ? 'photo/' + hash : '';
+  };
+
 
   /**
    * Сортирует список фотографий на основании id выбранного фильтра и отрисосывает отсортированние фотографии
