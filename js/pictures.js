@@ -31,7 +31,7 @@
 
   function addPageToScroll() {
     var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
-    if (loadedPictures != null && picturesCoord.bottom - 50 <= window.innerHeight) {
+    if (loadedPictures !== null && picturesCoord.bottom - 50 <= window.innerHeight) {
       renderPictures(loadedPictures, ++currentPage);
     }
   }
@@ -43,10 +43,10 @@
     xhr.timeout = 1000;
     xhr.onload = function(evt) {
       // setTimeout(function() {
-        var data = evt.target.response;
-        loadedPictures = JSON.parse(data);
-        pictureBlock.classList.remove('pictures-loading');
-        setActiveFilter('filter-popular');
+      var data = evt.target.response;
+      loadedPictures = JSON.parse(data);
+      pictureBlock.classList.remove('pictures-loading');
+      setActiveFilter('filter-popular');
       // }, 5000);
     };
 
@@ -64,13 +64,13 @@
     }
     var from = pageNumber * PAGE_SIZE;
     var to = from + PAGE_SIZE;
-    var pagePictures = pictures.slice(from, to);     
+    var pagePictures = pictures.slice(from, to);
     pagePictures.forEach(function(picture) {
       var photoElement = new Photo(picture);
       photoElement.render();
       pictureBlock.appendChild(photoElement.element);
     });
-  };
+  }
 
 
   //function getElementFromTemplate(data) {
