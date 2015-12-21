@@ -14,6 +14,9 @@
     this._likes = this._overlay.querySelector('.likes-count');
     this._comments = this._overlay.querySelector('.comments-count');
 
+    this._currentSlide = 0;
+    this._maxSlide = 0;
+
   }
 
   /**
@@ -50,13 +53,19 @@
     };
 
   Gallery.prototype.setCurrentPicture = function(index) {
-
     this._currentSlide = index;
     var picture = this._data[index];
     this._overlay.querySelector('.gallery-overlay-image').src = picture.url;
     this._likes.textContent = picture.likes;
     this._comments.textContent = picture.comments;
     };
+
+  Gallery.prototype._onPhotoClick = function() {
+    if (this._currentSlide < this._maxSlide) {
+      this.setCurrentPicture(++this._currentSlide);
+    }
+  };
+  
 
   window.Gallery = Gallery;
 })();

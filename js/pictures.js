@@ -77,14 +77,18 @@
     var from = pageNumber * PAGE_SIZE;
     var to = from + PAGE_SIZE;
     var pagePictures = pictures.slice(from, to);
-    pagePictures.forEach(function(picture) {
+
+    for (var i = 0; i < pagePictures.length; i++) {
+      var picture = pagePictures[i];
       var photoElement = new Photo(picture);
       photoElement.render();
+      photoElement.onClick = function() {
+        gallery.setCurrentPicture(i);
+        gallery.show();
+      };
       pictureBlock.appendChild(photoElement.element);
-
-      photoElement.element.addEventListener('click', _onClick);
-    });
-  }
+    }
+  };
 
   /**
    * показывание галереи

@@ -41,6 +41,17 @@
       this.element.classList.add('picture-load-failure');
     }.bind(this);
 
+    Photo.prototype._onClick = function(e) {
+      e.preventDefault();
+      if (!this.element.classList.contains('picture-load-failure')) {
+        if (typeof this.onClick === 'function') {
+          this.onClick();
+        }
+      }
+    };
+
+    Photo.prototype.onClick = null;
+
     image.src = this._data.url;
   };
 
