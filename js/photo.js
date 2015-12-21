@@ -41,14 +41,16 @@
       this.element.classList.add('picture-load-failure');
     }.bind(this);
 
-    Photo.prototype._onClick = function(e) {
-      e.preventDefault();
-      if (!this.element.classList.contains('picture-load-failure')) {
+
+    this.element.addEventListener('click', function(e) {
+       e.preventDefault();
+       if (!this.element.classList.contains('picture-load-failure')) {
         if (typeof this.onClick === 'function') {
           this.onClick();
         }
-      }
-    };
+       }
+      }.bind(this)
+    );
 
     Photo.prototype.onClick = null;
 

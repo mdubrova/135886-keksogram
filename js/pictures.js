@@ -37,7 +37,7 @@
 
   function addPageToScroll() {
     var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
-    if (picturesCoord.bottom - 50 <= window.innerHeight) {
+    if (loadedPictures != null && picturesCoord.bottom - 50 <= window.innerHeight) {
       renderPictures(loadedPictures, ++currentPage);
     }
   }
@@ -78,16 +78,16 @@
     var to = from + PAGE_SIZE;
     var pagePictures = pictures.slice(from, to);
 
-    for (var i = 0; i < pagePictures.length; i++) {
-      var picture = pagePictures[i];
+    
+    pagePictures.forEach(function(picture) {
       var photoElement = new Photo(picture);
       photoElement.render();
-      photoElement.onClick = function() {
-        gallery.setCurrentPicture(i);
-        gallery.show();
-      };
       pictureBlock.appendChild(photoElement.element);
-    }
+         
+        photoElement.onClick = function() {
+        gallery.setCurrentPicture(loadedPictures.indexOf(picture));        
+        gallery.show();
+      }})
   };
 
   /**
@@ -146,6 +146,7 @@
         break;
     }
     currentPage = 0;
+    gallery.setPictures(loadedPictures);
     renderPictures(loadedPictures, currentPage, true);
   }
 
