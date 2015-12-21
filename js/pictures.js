@@ -6,6 +6,7 @@
 (function() {
   var filters = document.querySelector('.filters');
   var pictureBlock = document.querySelector('.pictures');
+  var activeFilter = localStorage.getItem('activeFilter') || 'filter-all'
   var loadedPictures = null;
   var scrollInterval;
 
@@ -51,12 +52,10 @@
     xhr.open('GET', 'data/pictures.json');
     xhr.timeout = 1000;
     xhr.onload = function(evt) {
-      // setTimeout(function() {
       var data = evt.target.response;
       loadedPictures = JSON.parse(data);
       pictureBlock.classList.remove('pictures-loading');
-      setActiveFilter('filter-popular');
-      // }, 5000);
+      setActiveFilter(activeFilter);
     };
 
     xhr.onerror = function() {
@@ -93,38 +92,6 @@
   }
 
   /**
-   * показывание галереи
-   * @param {Event} evt
-   */
-  //function _onClick(evt) {
-    //evt.preventDefault();
-    //gallery.show();
-  //}
-
-
-  //function getElementFromTemplate(data) {
-    //var pictureTemplate = document.querySelector('#picture-template');
-    //var duplicate = pictureTemplate.content.children[0].cloneNode(true);
-
-    //duplicate.querySelector('.picture-comments').textContent = data.comments;
-    //duplicate.querySelector('.picture-likes').textContent = data.likes;
-
-    //var image = new Image(182, 182);
-
-    //image.onload = function() {
-      //duplicate.replaceChild(image, duplicate.querySelector('img'));
-    //};
-
-    //image.onerror = function() {
-      //duplicate.classList.add('picture-load-failure');
-    //};
-
-    //image.src = data.url;
-
-    //return duplicate;
-  //}
-
-  /**
    * Сортирует список фотографий на основании id выбранного фильтра и отрисосывает отсортированние фотографии
    * @param {string} id
    */
@@ -151,6 +118,16 @@
     currentPage = 0;
     gallery.setPictures(loadedPictures);
     renderPictures(loadedPictures, currentPage, true);
+    activeFilter = id;
+    localStorage.setItem('activeFilter', id);
+    saveCurrentFilter(id);
+  }
+
+  function saveCurrentFilter(id) {
+    var filterToSelect = document.getElementById(id);
+    if (filterToSelect) {
+      filterToSelect.checked = true;
+    }
   }
 
 })();
