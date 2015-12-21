@@ -65,7 +65,7 @@
     };
 
     xhr.send();
-  }
+  };
 
   /**
    * Функция отрисовки фотографий
@@ -81,26 +81,25 @@
     var to = from + PAGE_SIZE;
     var pagePictures = pictures.slice(from, to);
 
-    
     pagePictures.forEach(function(picture) {
       var photoElement = new Photo(picture);
       photoElement.render();
       pictureBlock.appendChild(photoElement.element);
-         
         photoElement.onClick = function() {
-        gallery.setCurrentPicture(loadedPictures.indexOf(picture));        
-        gallery.show();
-      }})
+          gallery.setCurrentPicture(loadedPictures.indexOf(picture));     
+          gallery.show();
+        };
+    })
   };
 
   /**
    * показывание галереи
    * @param {Event} evt
    */
-  function _onClick(evt) {
-    evt.preventDefault();
-    gallery.show();
-  }
+  //function _onClick(evt) {
+    //evt.preventDefault();
+    //gallery.show();
+  //}
 
 
   //function getElementFromTemplate(data) {

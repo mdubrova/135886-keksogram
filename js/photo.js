@@ -43,14 +43,13 @@
 
 
     this.element.addEventListener('click', function(e) {
-       e.preventDefault();
-       if (!this.element.classList.contains('picture-load-failure')) {
+      e.preventDefault();
+      if (!this.element.classList.contains('picture-load-failure')) {
         if (typeof this.onClick === 'function') {
           this.onClick();
         }
        }
-      }.bind(this)
-    );
+    }.bind(this));
 
     Photo.prototype.onClick = null;
 
