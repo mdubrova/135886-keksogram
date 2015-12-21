@@ -11,6 +11,8 @@
     this._closeButton = this.element.querySelector('.gallery-overlay-close');
     this._onCloseClick = this._onCloseClick.bind(this);
     this._overlay = document.querySelector('.gallery-overlay');
+    this._likes = this._overlay.querySelector('.likes-count');
+    this._comments = this._overlay.querySelector('.comments-count');
 
   }
 
@@ -51,10 +53,10 @@
 
     this._currentSlide = index;
     var picture = this._data[index];
-    this._overlay.querySelector('.gallery-overlay-image').src = picture.();
-
-    }
- };
+    this._overlay.querySelector('.gallery-overlay-image').src = picture.url;
+    this._likes.textContent = picture.likes;
+    this._comments.textContent = picture.comments;
+    };
 
   window.Gallery = Gallery;
 })();
