@@ -86,9 +86,6 @@
       pictureBlock.appendChild(photoElement.element);
       photoElement.onClick = function() {
         setHash(picture.url);
-
-        //gallery.setCurrentPicture(loadedPictures.indexOf(picture));
-        //gallery.show();
       };
     });
   }

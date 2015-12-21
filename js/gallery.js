@@ -82,7 +82,7 @@
 
   Gallery.prototype._onPhotoClick = function() {
     if (this._currentSlide < this._data.length) {
-      this.setCurrentPicture(++this._currentSlide);
+      location.hash = 'photo/' + this._data[++this._currentSlide].url;
     }
   };
 
