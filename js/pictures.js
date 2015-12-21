@@ -1,3 +1,5 @@
+/* global Photo: true */
+
 'use strict';
 
 (function() {
@@ -29,7 +31,7 @@
 
   function addPageToScroll() {
     var picturesCoord = document.querySelector('.pictures').getBoundingClientRect();
-    if (picturesCoord.bottom - 50 <= window.innerHeight) {
+    if (loadedPictures !== null && picturesCoord.bottom - 50 <= window.innerHeight) {
       renderPictures(loadedPictures, ++currentPage);
     }
   }
@@ -38,11 +40,14 @@
     document.querySelector('.pictures').classList.add('pictures-loading');
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'data/pictures.json');
+    xhr.timeout = 1000;
     xhr.onload = function(evt) {
+      // setTimeout(function() {
       var data = evt.target.response;
       loadedPictures = JSON.parse(data);
       pictureBlock.classList.remove('pictures-loading');
       setActiveFilter('filter-popular');
+      // }, 5000);
     };
 
     xhr.onerror = function() {
@@ -61,32 +66,34 @@
     var to = from + PAGE_SIZE;
     var pagePictures = pictures.slice(from, to);
     pagePictures.forEach(function(picture) {
-      var nodeElement = getElementFromTemplate(picture);
-      pictureBlock.appendChild(nodeElement);
+      var photoElement = new Photo(picture);
+      photoElement.render();
+      pictureBlock.appendChild(photoElement.element);
     });
   }
 
-  function getElementFromTemplate(data) {
-    var pictureTemplate = document.querySelector('#picture-template');
-    var duplicate = pictureTemplate.content.children[0].cloneNode(true);
 
-    duplicate.querySelector('.picture-comments').textContent = data.comments;
-    duplicate.querySelector('.picture-likes').textContent = data.likes;
+  //function getElementFromTemplate(data) {
+    //var pictureTemplate = document.querySelector('#picture-template');
+    //var duplicate = pictureTemplate.content.children[0].cloneNode(true);
 
-    var image = new Image(182, 182);
+    //duplicate.querySelector('.picture-comments').textContent = data.comments;
+    //duplicate.querySelector('.picture-likes').textContent = data.likes;
 
-    image.onload = function() {
-      duplicate.replaceChild(image, duplicate.querySelector('img'));
-    };
+    //var image = new Image(182, 182);
 
-    image.onerror = function() {
-      duplicate.classList.add('picture-load-failure');
-    };
+    //image.onload = function() {
+      //duplicate.replaceChild(image, duplicate.querySelector('img'));
+    //};
 
-    image.src = data.url;
+    //image.onerror = function() {
+      //duplicate.classList.add('picture-load-failure');
+    //};
 
-    return duplicate;
-  }
+    //image.src = data.url;
+
+    //return duplicate;
+  //}
 
   function setActiveFilter(id) {
     switch (id) {
