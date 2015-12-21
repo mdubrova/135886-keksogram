@@ -57,18 +57,17 @@
   };
 
   Gallery.prototype.setCurrentPicture = function(index) {
-    if (typeof index == 'number') {
+    if (typeof index === 'number') {
       this._setCurrentPicture(index);
-    };
-    if (typeof index == 'string') {  
-      
-      for(var i = 0; i < this._data.length; i++) {
+    }
+    if (typeof index === 'string') {
+      for (var i = 0; i < this._data.length; i++) {
         var pictureItem = this._data[i];
-        if (pictureItem.url == index) {
+        if (pictureItem.url === index) {
           this._setCurrentPicture(i);
         }
-      };
-    };
+      }
+    }
   };
 
   Gallery.prototype._setCurrentPicture = function(index) {
