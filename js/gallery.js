@@ -10,6 +10,7 @@
     this.element = document.querySelector('.gallery-overlay');
     this._closeButton = this.element.querySelector('.gallery-overlay-close');
     this._onCloseClick = this._onCloseClick.bind(this);
+    this._overlay = document.querySelector('.gallery-overlay');
 
   }
 
@@ -37,5 +38,23 @@
   Gallery.prototype._onCloseClick = function() {
     this.hide();
   };
+
+ /**
+  * @param {Array,<Object>}
+  * принимает на вход массив фотографий и сохраняет его в объекте.
+  */
+  Gallery.prototype.setPictures = function(pictures) {
+    this._data = pictures;
+    };
+
+  Gallery.prototype.setCurrentPicture = function(index) {
+
+    this._currentSlide = index;
+    var picture = this._data[index];
+    this._overlay.querySelector('.gallery-overlay-image').src = picture.();
+
+    }
+ };
+
   window.Gallery = Gallery;
 })();
