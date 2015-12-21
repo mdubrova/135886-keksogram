@@ -56,6 +56,7 @@
       loadedPictures = JSON.parse(data);
       pictureBlock.classList.remove('pictures-loading');
       setActiveFilter(activeFilter);
+      gallery._onHashChange();
     };
 
     xhr.onerror = function() {

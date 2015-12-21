@@ -61,6 +61,7 @@
       this._setCurrentPicture(index);
     };
     if (typeof index == 'string') {  
+      
       for(var i = 0; i < this._data.length; i++) {
         var pictureItem = this._data[i];
         if (pictureItem.url == index) {
