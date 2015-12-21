@@ -14,6 +14,9 @@
     this._overlay = document.querySelector('.gallery-overlay');
     this._likes = this._overlay.querySelector('.likes-count');
     this._comments = this._overlay.querySelector('.comments-count');
+    this._onHashChange = this._onHashChange.bind(this);
+
+    window.addEventListener('hashchange', this._onHashChange);
 
     this._currentSlide = 0;
   }
@@ -54,17 +57,18 @@
   };
 
   Gallery.prototype.setCurrentPicture = function(index) {
-    if (typeof index = 'number') {
-      this.__setCurrentPicture(index);
+    if (typeof index == 'number') {
+      this._setCurrentPicture(index);
     };
-    if (typeof index = 'string') {  
+    if (typeof index == 'string') {  
       for(var i = 0; i < this._data.length; i++) {
         var pictureItem = this._data[i];
         if (pictureItem.url == index) {
-          this.__setCurrentPicture(index);
+          this._setCurrentPicture(i);
         }
       };
     };
+  };
 
   Gallery.prototype._setCurrentPicture = function(index) {
     this._currentSlide = index;
@@ -79,6 +83,13 @@
   Gallery.prototype._onPhotoClick = function() {
     if (this._currentSlide < this._data.length) {
       this.setCurrentPicture(++this._currentSlide);
+    }
+  };
+
+  Gallery.prototype._onHashChange = function() {
+    if (location.hash.match(/#photo\/(\S+)/) !== null) {
+      this.setCurrentPicture(location.hash.substr(7));
+      this.show();
     }
   };
 
