@@ -10,7 +10,7 @@ define([
   'gallery',
   'photo',
   'upload'
-  ],function(Gallery, Photo) {
+], function(Gallery, Photo) {
   var filters = document.querySelector('.filters');
   var pictureBlock = document.querySelector('.pictures');
   var activeFilter = localStorage.getItem('activeFilter') || 'filter-all';
