@@ -1,6 +1,8 @@
+/* global define:true */
+
 'use strict';
 
-(function() {
+define(function() {
 
  /**
   * @param {Object} data
@@ -56,5 +58,5 @@
     image.src = this._data.url;
   };
 
-  window.Photo = Photo;
-})();
+  return Photo;
+});

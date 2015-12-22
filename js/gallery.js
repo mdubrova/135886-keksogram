@@ -1,6 +1,8 @@
+/* global define:true */
+
 'use strict';
 
-(function() {
+define(function() {
 
  /**
   * конструктор для создания обьекта Gallery
@@ -93,5 +95,5 @@
     }
   };
 
-  window.Gallery = Gallery;
-})();
+  return Gallery;
+});
