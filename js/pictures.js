@@ -9,6 +9,7 @@ requirejs.config({
 define([
   'gallery',
   'photo',
+  'upload'
   ], function(Gallery, Photo) {
   var filters = document.querySelector('.filters');
   var pictureBlock = document.querySelector('.pictures');
